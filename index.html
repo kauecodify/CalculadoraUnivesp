@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota Final - UNIVESP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        nav img {
+            height: 40px;
+            align-items: right;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .github-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .github-link a {
+            display: inline-block;
+            text-decoration: none;
+            color: rgb(0, 255, 225);
+            background-color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .github-link a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="univesp.png" alt="Logo">
+    </nav>
+
+    <div class="container">
+        <h1>Calculadora de Nota Final</h1>
+        <form id="notaForm">
+            <label for="ae">Nota Total das Avaliações Semanais (AE):</label>
+            <input type="number" id="ae" min="0" max="10" step="0.01" required>
+
+            <label for="ap">Nota do Exame Final (AP):</label>
+            <input type="number" id="ap" min="0" max="10" step="0.01" required>
+
+            <button type="button" onclick="calcularNota()">Calcular Nota Final</button>
+        </form>
+
+        <div id="resultado" class="resultado"></div>
+        
+        <div class="github-link">
+            <a href="https://github.com/KaueCodify" target="_blank">GitHub</a>
+        </div>
+    </div>
+
+    <script>
+        function calcularNota() {
+            const ae = parseFloat(document.getElementById('ae').value);
+            const ap = parseFloat(document.getElementById('ap').value);
+
+            if (isNaN(ae) || isNaN(ap) || ae < 0 || ae > 10 || ap < 0 || ap > 10) {
+                document.getElementById('resultado').innerText = 'Por favor, insira valores válidos (0 a 10).';
+                return;
+            }
+
+            const pesoAE = 0.4;
+            const pesoAP = 0.6;
+            const notaFinal = (ae * pesoAE) + (ap * pesoAP);
+
+            document.getElementById('resultado').innerText = `Sua Nota Final é: ${notaFinal.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
